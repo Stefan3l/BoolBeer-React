@@ -6,7 +6,7 @@ import Footer from "../components/Footer";
 
 export default function DefaultLayout() {
   return (
-    <>
+    <div className="max-w-[1600px] mx-auto ">
       <Header />
 
       <main>
@@ -14,6 +14,6 @@ export default function DefaultLayout() {
       </main>
 
       <Footer />
-    </>
+    </div>
   );
 }

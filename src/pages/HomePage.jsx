@@ -1,3 +1,10 @@
+//import components
+import Hero from "../components/ui/Hero";
+
 export default function HomePage() {
-  return <h1>Sei sulla pagina HomePage</h1>;
+  return (
+    <>
+      <Hero />
+    </>
+  );
 }
