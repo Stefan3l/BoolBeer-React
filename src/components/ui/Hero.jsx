@@ -47,6 +47,22 @@ export default function Hero() {
             className="w-full h-full object-cover hover:scale-110 transition-transform duration-300"
           />
         </div>
+
+        {/* Image indicators */}
+        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex gap-4">
+          {images.map((_, index) => (
+            <span
+              key={index}
+              className={`text-3xl cursor-pointer ${
+                index === currentIndex ? "text-[#CBB27C]" : "text-white/50"
+              }`}
+              onClick={() => setCurrentIndex(index)}
+            >
+              {index === currentIndex ? "◆" : "◇"}
+            </span>
+          ))}
+        </div>
+
         {isHovered && (
           <>
             <button
