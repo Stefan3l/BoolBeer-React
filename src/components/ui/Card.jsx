@@ -1,11 +1,17 @@
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 export default function Card() {
   const [beers, setBeers] = useState([]);
 
   useEffect(() => {
+    AOS.init({
+      duration: 800,
+      once: true,
+    });
     axios
       .get("http://127.0.0.1:8000/api/beers")
       .then((response) => {
@@ -42,6 +48,8 @@ export default function Card() {
       {beers.map((beer) => (
         <div
           key={beer.id}
+          data-aos="fade-up"
+          data-aos-delay={200}
           className="card hover:shadow-lg transition-shadow duration-300"
           style={{
             border: "1px solid #e2e8f0",
