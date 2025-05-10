@@ -11,15 +11,24 @@ export default function SectionCarousel() {
     axios
       .get("http://127.0.0.1:8000/api/beers")
       .then((response) => {
-        //controllo se la risposta e un array
+        //creo una variabile per salvare i dati
+        //verifico se i dati sono un array o un oggetto
+        let beerData = [];
         if (Array.isArray(response.data)) {
-          console.log(response.data);
-          setBeers(response.data);
+          beerData = response.data;
         } else if (response.data && Array.isArray(response.data.data)) {
-          setBeers(response.data.data);
+          beerData = response.data.data;
         } else {
           setError("Invalid data format");
+          return;
         }
+
+        // Sort beers by rating and take top 14
+        const topBeers = beerData
+          .sort((a, b) => parseFloat(b.rating) - parseFloat(a.rating))
+          .slice(0, 14);
+
+        setBeers(topBeers);
       })
       .catch((error) => {
         console.error("Products not found", error);
@@ -88,6 +97,22 @@ export default function SectionCarousel() {
     }));
   };
 
+  const renderStars = (rating) => {
+    const stars = [];
+    const ratingNum = parseFloat(rating) || 0;
+    for (let i = 1; i <= 5; i++) {
+      stars.push(
+        <i
+          key={i}
+          className={`fa-solid fa-star ${
+            i <= ratingNum ? "text-[#CBB27C]" : "text-gray-300"
+          }`}
+        />
+      );
+    }
+    return stars;
+  };
+
   return (
     <div className="flex items-center gap-4 ">
       <div className="w-1/3">
@@ -137,6 +162,9 @@ export default function SectionCarousel() {
                     <i className="fa-solid fa-bottle-water text-[#CBB27C]"></i>
                     <p className="text-sm font-semibold">{beer.quantity}cl</p>
                   </div>
+                </div>
+                <div className="flex justify-center items-center gap-1 mt-2">
+                  {renderStars(beer.rating)}
                 </div>
               </div>
             ))}
