@@ -23,7 +23,7 @@ export default function SectionCarousel() {
           return;
         }
 
-        // Sort beers by rating and take top 14
+        //filtro i dati per ottenere solo le birre con rating maggiore di 0
         const topBeers = beerData
           .sort((a, b) => parseFloat(b.rating) - parseFloat(a.rating))
           .slice(0, 14);
@@ -35,17 +35,36 @@ export default function SectionCarousel() {
       });
   }, []);
 
+  // funzione per aggiornare le schede visibili in base alla larghezza della finestra
   useEffect(() => {
-    if (beers.length > 0) {
-      setVisibleCards(beers.slice(0, 4));
-    }
+    const updateVisibleCards = () => {
+      if (beers.length > 0) {
+        const width = window.innerWidth;
+        if (width < 768) {
+          // mobile
+          setVisibleCards(beers.slice(0, 1));
+        } else if (width < 1024) {
+          // tablet
+          setVisibleCards(beers.slice(0, 2));
+        } else {
+          // desktop
+          setVisibleCards(beers.slice(0, 4));
+        }
+      }
+    };
+
+    // inizializza le schede visibili in base alla larghezza della finestra
+    updateVisibleCards();
+    window.addEventListener("resize", updateVisibleCards);
+    return () => window.removeEventListener("resize", updateVisibleCards);
   }, [beers]);
 
+  // funzione per aggiornare le schede visibili ogni 3 secondi
   useEffect(() => {
     const interval = setInterval(() => {
       setVisibleCards((prevCards) => {
         const newCards = [...prevCards];
-        // Remove first card and add next card at the end
+        // rimuovi la prima carta e aggiungi la prossima
         newCards.shift();
         const nextIndex =
           (beers.indexOf(newCards[newCards.length - 1]) + 1) % beers.length;
@@ -72,11 +91,16 @@ export default function SectionCarousel() {
   // funzione per passare alla slide successiva
   const handleNextSlide = () => {
     setVisibleCards((prevCards) => {
-      const newCards = [...prevCards];
-      newCards.shift();
-      const nextIndex =
-        (beers.indexOf(newCards[newCards.length - 1]) + 1) % beers.length;
-      newCards.push(beers[nextIndex]);
+      const firstCardIndex = beers.indexOf(prevCards[0]);
+      const numVisibleCards = prevCards.length;
+      const newCards = [];
+
+      // Aggiungi la prima carta alla fine dell'array
+      for (let i = 0; i < numVisibleCards; i++) {
+        const nextIndex = (firstCardIndex + i + 1) % beers.length;
+        newCards.push(beers[nextIndex]);
+      }
+
       return newCards;
     });
   };
@@ -114,21 +138,21 @@ export default function SectionCarousel() {
   };
 
   return (
-    <div className="flex items-center gap-4 ">
-      <div className="w-1/3">
+    <div className="flex flex-col lg:flex-row items-center gap-4 px-2 lg:px-0">
+      <div className="w-full lg:w-1/3 lg:h-full">
         <img
           src="../images/Prod-Promo_Nenea-Iancu-Blonda-Sp.png"
           alt="Promo"
-          className="w-full"
+          className="w-full h-auto lg:h-full object-contain"
         />
       </div>
-      <div className="w-2/3">
+      <div className="w-full lg:w-2/3">
         <div className="overflow-hidden">
           <div className="flex gap-4 transition-all duration-500 ease-in-out relative">
             {visibleCards.map((beer) => (
               <div
                 key={beer.id}
-                className="w-1/4 flex-shrink-0 p-4 border rounded-lg shadow-xl transform transition-all duration-500 relative"
+                className="w-full md:w-1/2 lg:w-1/4 flex-shrink-0 p-4 border rounded-lg shadow-xl transform transition-all duration-500 relative"
               >
                 <i
                   className={`fa-${
