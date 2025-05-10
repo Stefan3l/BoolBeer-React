@@ -55,13 +55,28 @@ export default function Header() {
           >
             <ul className="flex list-unstyled gap-4 mr-4">
               <li>
-                <a href="/">Home</a>
+                <a
+                  href="/"
+                  className="hover:text-[#CBB27C] transition-all  inline-block"
+                >
+                  Home
+                </a>
               </li>
               <li>
-                <a href="/about">About</a>
+                <a
+                  href="/about"
+                  className="hover:text-[#CBB27C] transition-all  inline-block"
+                >
+                  About
+                </a>
               </li>
               <li>
-                <a href="/contact">Contact</a>
+                <a
+                  href="/contact"
+                  className="hover:text-[#CBB27C] transition-all  inline-block"
+                >
+                  Contact
+                </a>
               </li>
             </ul>
           </div>
@@ -70,19 +85,34 @@ export default function Header() {
           <div
             className={`
             md:hidden fixed top-0 right-0 h-screen w-64 bg-[#0D2227] 
-            transform transition-transform duration-300 ease-in-out
+            transform transition-transform duration-300 ease-in-out 
             ${isMobileMenuOpen ? "translate-x-0" : "translate-x-full"}
           `}
           >
             <ul className="flex flex-col items-center gap-4 pt-20">
               <li>
-                <a href="/">Home</a>
+                <a
+                  href="/"
+                  className="hover:text-[#CBB27C] transition-all  inline-block"
+                >
+                  Home
+                </a>
               </li>
               <li>
-                <a href="/about">About</a>
+                <a
+                  href="/about"
+                  className="hover:text-[#CBB27C] transition-all  inline-block"
+                >
+                  About
+                </a>
               </li>
               <li>
-                <a href="/contact">Contact</a>
+                <a
+                  href="/contact"
+                  className="hover:text-[#CBB27C] transition-all  inline-block"
+                >
+                  Contact
+                </a>
               </li>
             </ul>
           </div>
