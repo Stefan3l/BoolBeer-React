@@ -53,17 +53,32 @@ export default function Card() {
             backgroundColor: "white",
           }}
         >
-          <div className="relative">
+          <div className="relative" style={{ height: "200px" }}>
             <img
               src={beer.image_url}
               alt={beer.name}
               className="card-image"
               style={{
                 width: "100%",
-
-                objectFit: "cover",
+                height: "100%",
+                objectFit: "contain",
+                padding: "10px",
               }}
             />
+            <div
+              className="absolute top-0 right-0"
+              style={{
+                width: "80px",
+                height: "80px",
+                padding: "5px",
+              }}
+            >
+              <img
+                src="../images/logo-beer.png"
+                alt="Promo"
+                className="w-full h-full object-contain"
+              />
+            </div>
           </div>
           <div
             className="card-content p-6"

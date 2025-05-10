@@ -6,6 +6,7 @@ import SectionCarousel from "../components/SectionCarousel";
 import Whatsapp from "../components/ui/Whatsapp";
 import ButtonUp from "../components/ui/ButtonUp";
 import Card from "../components/ui/Card";
+import SectionContatta from "../components/SectionContatta";
 
 export default function HomePage() {
   return (
@@ -16,6 +17,7 @@ export default function HomePage() {
       <SectionCarousel />
       <Whatsapp />
       <ButtonUp />
+      <SectionContatta />
       <Card />
     </div>
   );
