@@ -2,7 +2,7 @@ export default function Footer() {
   return (
     <footer className="bg-[url('../images/31.png')] bg-cover bg-center text-white py-12">
       <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8 md:px-20">
           <div className="text-center md:text-left">
             <h3 className="text-xl font-bold mb-4">Contact Us</h3>
             <p className="mb-2">123 Beer Street</p>
