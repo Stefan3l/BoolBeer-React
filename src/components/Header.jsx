@@ -30,13 +30,17 @@ export default function Header() {
               isScrolled && window.innerWidth > 768 ? "-top-2" : "top-0"
             }`}
           >
-            <img
-              src="../images/logo-beer.png"
-              alt="Logo"
-              className={`transition-all duration-300 ${
-                isScrolled && window.innerWidth > 768 ? "w-64" : "w-24 md:w-32"
-              }`}
-            />
+            <a href="/">
+              <img
+                src="../images/logo-beer.png"
+                alt="Logo"
+                className={`transition-all duration-300 ${
+                  isScrolled && window.innerWidth > 768
+                    ? "w-64"
+                    : "w-24 md:w-32"
+                }`}
+              />
+            </a>
           </div>
 
           {/* Burger Menu Button */}

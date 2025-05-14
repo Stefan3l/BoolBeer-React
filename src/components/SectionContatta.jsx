@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export default function SectionContatta() {
   return (
     <section
@@ -6,9 +8,11 @@ export default function SectionContatta() {
     >
       <div className="absolute inset-0 bg-black/50 flex flex-col items-center justify-center text-white">
         <p className="text-4xl font-bold mb-6">Vuoi saperne di più?</p>
-        <button className="px-8 py-3 bg-[#CBB27C] hover:bg-[#b89d64] rounded-lg text-lg font-semibold transition-colors cursor-pointer">
-          Contattaci
-        </button>
+        <Link to="/contact">
+          <button className="px-8 py-3 bg-[#CBB27C] hover:bg-[#b89d64] rounded-lg text-lg font-semibold transition-colors cursor-pointer">
+            Contattaci
+          </button>
+        </Link>
       </div>
     </section>
   );

@@ -132,7 +132,7 @@ export default function Card() {
             </div>
 
             <Link
-              to={`/product/${beer.id}`}
+              to={`/beer/${beer.id}`}
               className="mt-auto bg-[#CBB27C] hover:bg-[#b89d64] text-white py-2 px-4 rounded-lg transition-colors duration-300 text-center font-semibold"
             >
               View Details
