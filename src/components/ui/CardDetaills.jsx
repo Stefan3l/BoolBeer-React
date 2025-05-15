@@ -89,7 +89,7 @@ export default forwardRef(function CardDetaills(props, ref) {
                   <p className="text-sm text-amber-800 font-semibold uppercase tracking-wider">
                     Category
                   </p>
-                  <p className="font-bold text-2xl text-amber-900">
+                  <p className="font-bold text-lg sm:text-2xl text-amber-900">
                     {beer.category.type_name}
                   </p>
                 </div>
